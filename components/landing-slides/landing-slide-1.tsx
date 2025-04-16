@@ -166,7 +166,7 @@ export default function LandingSlide1({ direction, onExit }: LandingSlide1Props)
           className="text-center"
         >
           <Image
-            src="https://wbqhilueipkcyowudqzz.supabase.co/storage/v1/object/public/seres/logo.png"
+            src="https://wbqhilueipkcyowudqzz.supabase.co/storage/v1/object/public/seres//WhatsApp_Image_2025-04-15_at_19.38.55-removebg-preview.png"
             alt="SERES Logo"
             width={180}
             height={180}

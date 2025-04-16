@@ -194,7 +194,7 @@ export default function Slide1({ direction, onExplore }: Slide1Props) {
           className="object-cover brightness-[0.65]"
         />
         <motion.div 
-          className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/40" 
+          className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/50" 
           initial={{ opacity: 0.5 }}
           animate={{ opacity: 1 }}
           transition={{ duration: isMobile ? 1.2 : 1.8 }}
@@ -239,30 +239,37 @@ export default function Slide1({ direction, onExplore }: Slide1Props) {
             />
           </motion.div>
 
-          {/* Main heading with improved animation */}
+          {/* Main heading with improved animation - Fixed layout */}
           <motion.h1
             custom={2}
             initial="hidden"
             animate="visible"
             variants={fadeInUp}
-            className="mb-4 md:mb-6 text-3xl md:text-5xl lg:text-7xl font-bold tracking-tight text-white"
+            className="mb-4 md:mb-6 text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white"
           >
-            <motion.span 
-              className="block"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: isMobile ? 0.2 : 0.4, duration: isMobile ? 0.5 : 0.7, ease: "easeOut" }}
+            <motion.div 
+              className="flex flex-col space-y-1 md:space-y-2"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
             >
-              Digital Platform
-            </motion.span>
-            <motion.span 
-              className="block bg-gradient-to-r from-white to-white/70 bg-clip-text text-transparent"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: isMobile ? 0.3 : 0.6, duration: isMobile ? 0.5 : 0.7, ease: "easeOut" }}
-            >
-              Proposal
-            </motion.span>
+              <motion.span 
+                className="block"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: isMobile ? 0.2 : 0.4, duration: 0.7, ease: "easeOut" }}
+              >
+                Digital Platform
+              </motion.span>
+              <motion.span 
+                className="block bg-gradient-to-r from-white via-white to-white/80 bg-clip-text text-transparent"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: isMobile ? 0.4 : 0.6, duration: 0.7, ease: "easeOut" }}
+              >
+                Proposal
+              </motion.span>
+            </motion.div>
           </motion.h1>
 
           {/* Tagline with optimized animations */}
@@ -288,24 +295,28 @@ export default function Slide1({ direction, onExplore }: Slide1Props) {
                   }
                 }}
               >
-                {/* Ignite with enhanced flame effect */}
+                {/* Ignite with enhanced flame effect - Fixed color transition */}
                 <span className="relative mr-1 md:mr-2">
-                  {"Ignite".split('').map((char, index) => (
-                    <motion.span
-                      key={index}
-                      variants={letterVariants}
-                      transition={{ 
-                        type: "spring", 
-                        stiffness: 250, 
-                        damping: 12,
-                        delay: index * (isMobile ? 0.03 : 0.04) + (isMobile ? 0.07 : 0.1)
-                      }}
-                      className="inline-block"
-                      style={{ color: index <= 2 ? '#ff6b00' : '#ffc107' }}
-                    >
-                      {char}
-                    </motion.span>
-                  ))}
+                  {["I", "g", "n", "i", "t", "e"].map((char, index) => {
+                    // Create a smoother gradient effect for the text
+                    const colors = ['#ff6b00', '#ff7e00', '#ff9100', '#ffa500', '#ffb700', '#ffc800'];
+                    return (
+                      <motion.span
+                        key={index}
+                        variants={letterVariants}
+                        transition={{ 
+                          type: "spring", 
+                          stiffness: 250, 
+                          damping: 12,
+                          delay: index * (isMobile ? 0.03 : 0.04) + (isMobile ? 0.07 : 0.1)
+                        }}
+                        className="inline-block font-bold"
+                        style={{ color: colors[index] }}
+                      >
+                        {char}
+                      </motion.span>
+                    );
+                  })}
                   {/* Enhanced sparks animation */}
                   <motion.span 
                     className="absolute -right-1 -top-2 text-amber-400 text-xs md:text-sm"

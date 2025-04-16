@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import { motion } from "framer-motion"
 import Image from "next/image"
-import { Search, BarChart4, Map, Clock } from "lucide-react"
+import { ArrowLeft, ArrowRight } from "lucide-react"
 import { Merriweather } from 'next/font/google'
 import ExitButton from '@/components/ui/exit-button'
 
@@ -21,6 +21,19 @@ interface LandingSlide5Props {
 export default function LandingSlide5({ direction, onExit }: LandingSlide5Props) {
   // State to detect if we're on a mobile device
   const [isMobile, setIsMobile] = useState(false)
+  // State for carousel
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  
+  const images = [
+    {
+      src: "https://wbqhilueipkcyowudqzz.supabase.co/storage/v1/object/public/seres//anton-lukin-oqkFQjB10sE-unsplash.jpg",
+      alt: "Target Audience Image 1"
+    },
+    {
+      src: "https://wbqhilueipkcyowudqzz.supabase.co/storage/v1/object/public/seres//river-kao-SSOMkTC5Szo-unsplash.jpg",
+      alt: "Target Audience Image 2"
+    }
+  ]
   
   // Check for mobile device on mount
   useEffect(() => {
@@ -37,6 +50,15 @@ export default function LandingSlide5({ direction, onExit }: LandingSlide5Props)
     // Cleanup
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
+
+  // Auto-advance carousel
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length)
+    }, 5000) // Change image every 5 seconds
+    
+    return () => clearInterval(timer)
+  }, [images.length])
 
   // Define the shared transition
   const transition = {
@@ -76,6 +98,14 @@ export default function LandingSlide5({ direction, onExit }: LandingSlide5Props)
     })
   }
 
+  const nextImage = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length)
+  }
+
+  const prevImage = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length)
+  }
+
   return (
     <motion.div
       custom={direction}
@@ -89,145 +119,127 @@ export default function LandingSlide5({ direction, onExit }: LandingSlide5Props)
       {/* Exit Button */}
       {onExit && <ExitButton onClick={onExit} />}
 
-      {/* Background */}
-      <div className="absolute inset-0 overflow-hidden">
-        <Image 
-          src="https://wbqhilueipkcyowudqzz.supabase.co/storage/v1/object/public/seres//milad-fakurian-UGSK1GGAz8E-unsplash.jpg"
-          alt="Key Features Background"
-          fill
-          priority
-          className="object-cover brightness-[0.8]"
-          style={{
-            objectPosition: "center center",
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/80 to-black/60"></div>
-      </div>
-
       {/* Main Content */}
-      <div className="relative z-10 flex h-full w-full flex-col px-4 py-6 md:px-12 md:py-8 pb-16 md:pb-24 overflow-y-auto">
-        {/* Title */}
-        <motion.h1
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-6 md:mb-8 text-3xl md:text-4xl font-extrabold text-white text-center md:text-left"
-        >
-          Key Features
-        </motion.h1>
-
-        {/* Feature Sections */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Section 1: Included Sections */}
-          <motion.div
-            variants={featureVariants}
-            custom={0}
-            initial="hidden"
-            animate="visible"
-            className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-xl p-5 hover:bg-white/15 transition-colors duration-300"
-          >
-            <div className="flex flex-col h-full">
-              <div className="mb-4">
-                <h3 className="text-xl font-bold text-white">1. Sections Included</h3>
-              </div>
-              <ul className="space-y-2 text-white/80 text-sm md:text-base">
-                <li className="flex">
-                  <span className="text-amber-400 mr-2">•</span>
-                  <span>Hero section with strong headline and CTA</span>
-                </li>
-                <li className="flex">
-                  <span className="text-amber-400 mr-2">•</span>
-                  <span>About SERES – Vision, values, track record</span>
-                </li>
-                <li className="flex">
-                  <span className="text-amber-400 mr-2">•</span>
-                  <span>Project highlights (up to 3 static showcases)</span>
-                </li>
-                <li className="flex">
-                  <span className="text-amber-400 mr-2">•</span>
-                  <span>Contact section (form + WhatsApp)</span>
-                </li>
-                <li className="flex">
-                  <span className="text-amber-400 mr-2">•</span>
-                  <span>Language switcher (EN/ES)</span>
-                </li>
-              </ul>
-            </div>
-          </motion.div>
-
-          {/* Section 2: Technology */}
-          <motion.div
-            variants={featureVariants}
-            custom={1}
-            initial="hidden"
-            animate="visible"
-            className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-xl p-5 hover:bg-white/15 transition-colors duration-300"
-          >
-            <div className="flex flex-col h-full">
-              <div className="mb-4">
-                <h3 className="text-xl font-bold text-white">2. Technology</h3>
-              </div>
-              <ul className="space-y-2 text-white/80 text-sm md:text-base">
-                <li className="flex">
-                  <span className="text-amber-400 mr-2">•</span>
-                  <span>Frontend: HTML/CSS/React or lightweight Next.js</span>
-                </li>
-                <li className="flex">
-                  <span className="text-amber-400 mr-2">•</span>
-                  <span>Hosting: Vercel or Netlify (free tier, blazing fast)</span>
-                </li>
-                <li className="flex">
-                  <span className="text-amber-400 mr-2">•</span>
-                  <span>Optimized for mobile (responsive)</span>
-                </li>
-                <li className="flex">
-                  <span className="text-amber-400 mr-2">•</span>
-                  <span>SEO‑ready: meta tags, alt text, fast page load</span>
-                </li>
-              </ul>
-            </div>
-          </motion.div>
-
-          {/* Section 3: Performance Targets */}
-          <motion.div
-            variants={featureVariants}
-            custom={2}
-            initial="hidden"
-            animate="visible"
-            className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-xl p-5 hover:bg-white/15 transition-colors duration-300"
-          >
-            <div className="flex flex-col h-full">
-              <div className="mb-4">
-                <h3 className="text-xl font-bold text-white">3. Performance Targets</h3>
-              </div>
-              <ul className="space-y-2 text-white/80 text-sm md:text-base">
-                <li className="flex">
-                  <span className="text-amber-400 mr-2">•</span>
-                  <span>Loads in &lt; 1.5 seconds</span>
-                </li>
-                <li className="flex">
-                  <span className="text-amber-400 mr-2">•</span>
-                  <span>Google PageSpeed (mobile) ≥ 90</span>
-                </li>
-              </ul>
-            </div>
-          </motion.div>
+      <div className="relative h-full w-full flex flex-col md:flex-row">
+        {/* Image Carousel - Left side on desktop, top on mobile */}
+        <div className="relative h-full md:w-1/2 h-1/2 md:h-full">
+          {images.map((image, index) => (
+            <motion.div 
+              key={index}
+              initial={{ opacity: 0 }}
+              animate={{ 
+                opacity: currentImageIndex === index ? 1 : 0,
+                zIndex: currentImageIndex === index ? 1 : 0
+              }}
+              transition={{ duration: 0.8 }}
+              className="absolute inset-0"
+            >
+              <Image 
+                src={image.src}
+                alt={image.alt}
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-transparent to-black/90"></div>
+            </motion.div>
+          ))}
+          
+          {/* Carousel Controls */}
+          <div className="absolute bottom-4 left-0 right-0 flex justify-center z-10 md:bottom-auto md:top-1/2 md:-translate-y-1/2 md:justify-between md:px-4">
+            <button 
+              onClick={prevImage}
+              className="bg-white/20 backdrop-blur-sm p-2 rounded-full mr-4 hover:bg-white/30 transition-colors"
+            >
+              <ArrowLeft className="h-5 w-5 text-white" />
+            </button>
+            <button 
+              onClick={nextImage}
+              className="bg-white/20 backdrop-blur-sm p-2 rounded-full hover:bg-white/30 transition-colors"
+            >
+              <ArrowRight className="h-5 w-5 text-white" />
+            </button>
+          </div>
         </div>
+        
+        {/* Content - Right side on desktop, bottom on mobile */}
+        <div className="relative flex-1 bg-black/90 p-6 md:p-8 flex flex-col overflow-y-auto">
+          {/* Title */}
+          <motion.h1
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="mb-4 text-3xl md:text-4xl font-extrabold text-white"
+          >
+            Target Audiences & User Journeys
+          </motion.h1>
 
-        {/* Call To Action */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9, duration: 0.6 }}
-          className="mt-auto bg-gradient-to-r from-amber-500/30 to-yellow-600/30 backdrop-blur-sm border border-amber-500/30 rounded-lg p-5 mt-6"
-        >
-          <h3 className="text-lg md:text-xl font-semibold text-amber-400 mb-2">
-            Optimized Approach
-          </h3>
-          <p className="text-white/90 text-sm md:text-base">
-            We've carefully selected features and technologies that deliver maximum value at the $1,500 price point, focusing on what SERES truly needs to establish an effective online presence.
-          </p>
-        </motion.div>
+          {/* Content */}
+          <div className="space-y-6">
+            {/* Primary Audiences */}
+            <motion.div
+              variants={featureVariants}
+              custom={0}
+              initial="hidden"
+              animate="visible"
+              className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-xl p-4 hover:bg-white/15 transition-colors duration-300"
+            >
+              <h3 className="text-xl font-bold text-white mb-3">Primary Audiences</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="text-white/90">
+                  <h4 className="text-amber-400 font-semibold mb-2">High-Income Professionals</h4>
+                  <ul className="space-y-1 text-sm">
+                    <li>• Ages 35-55</li>
+                    <li>• Seeking premium properties</li>
+                    <li>• Prioritize location and amenities</li>
+                  </ul>
+                </div>
+                <div className="text-white/90">
+                  <h4 className="text-amber-400 font-semibold mb-2">Investors</h4>
+                  <ul className="space-y-1 text-sm">
+                    <li>• Both local and international</li>
+                    <li>• Seeking steady ROI opportunities</li>
+                    <li>• Value market data and analytics</li>
+                  </ul>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* User Journeys */}
+            <motion.div
+              variants={featureVariants}
+              custom={1}
+              initial="hidden"
+              animate="visible"
+              className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-xl p-4 hover:bg-white/15 transition-colors duration-300"
+            >
+              <h3 className="text-xl font-bold text-white mb-3">User Journeys</h3>
+              <div className="space-y-3 text-white/90 text-sm">
+                <p><span className="text-amber-400 font-semibold">Discovery:</span> Users find SERES through search engines, social media, or referrals.</p>
+                <p><span className="text-amber-400 font-semibold">Engagement:</span> Browse projects, learn about company values, view property highlights.</p>
+                <p><span className="text-amber-400 font-semibold">Contact:</span> Easily reach out via form or WhatsApp for more information or to schedule viewings.</p>
+              </div>
+            </motion.div>
+
+            {/* Website Optimization Strategy - Moved directly under User Journeys */}
+            <motion.div
+              variants={featureVariants}
+              custom={2}
+              initial="hidden"
+              animate="visible"
+              className="bg-gradient-to-r from-amber-500/30 to-yellow-600/30 backdrop-blur-sm border border-amber-500/30 rounded-lg p-4"
+            >
+              <h3 className="text-lg font-semibold text-amber-400 mb-2">
+                Website Optimization Strategy
+              </h3>
+              <p className="text-white/90 text-sm">
+                Our design and content strategy is specifically tailored to engage these target audiences, with clear paths to conversion and features that address their specific needs and concerns.
+              </p>
+            </motion.div>
+          </div>
+
+          {/* Empty div to keep layout consistent */}
+          <div className="mt-auto"></div>
+        </div>
       </div>
     </motion.div>
   )
