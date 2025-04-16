@@ -158,47 +158,47 @@ export default function LandingSlide1({ direction, onExit }: LandingSlide1Props)
       </motion.div>
 
       {/* Main Content */}
-      <div className="relative z-10 flex h-full w-full flex-col items-center justify-center px-4 py-6 md:px-12 md:py-8">
+      <div className="relative z-10 flex h-full w-full flex-col items-center justify-center px-4 py-6 md:px-12 md:py-8 overflow-y-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center"
+          className="text-center max-w-full"
         >
           <Image
             src="https://wbqhilueipkcyowudqzz.supabase.co/storage/v1/object/public/seres//WhatsApp_Image_2025-04-15_at_19.38.55-removebg-preview.png"
             alt="SERES Logo"
             width={180}
             height={180}
-            className="mx-auto mb-8"
+            className="mx-auto mb-6 md:mb-8 w-[140px] h-auto md:w-[180px]"
           />
           
-          <h1 className="mb-3 text-4xl md:text-6xl font-bold text-white">
+          <h1 className="mb-3 text-3xl md:text-6xl font-bold text-white">
             <span className="block mb-2">Modern, Multilingual</span>
             <span className="bg-gradient-to-r from-amber-200 to-amber-400 bg-clip-text text-transparent">
               Landing Website
             </span>
           </h1>
           
-          <div className="mt-6 mb-10 flex flex-col items-center space-y-3">
+          <div className="mt-5 md:mt-6 mb-8 md:mb-10 flex flex-col items-center space-y-2 md:space-y-3">
             <div className="flex items-center">
-              <span className="text-white/60 w-28 text-right mr-3">Client:</span>
-              <span className="text-white font-medium">SERES Inmobiliaria</span>
+              <span className="text-white/60 w-24 md:w-28 text-right mr-3 text-sm md:text-base">Client:</span>
+              <span className="text-white font-medium text-sm md:text-base">SERES Inmobiliaria</span>
             </div>
             <div className="flex items-center">
-              <span className="text-white/60 w-28 text-right mr-3">Partner:</span>
-              <span className="text-white font-medium">Aleph Corp</span>
+              <span className="text-white/60 w-24 md:w-28 text-right mr-3 text-sm md:text-base">Partner:</span>
+              <span className="text-white font-medium text-sm md:text-base">Aleph Corp</span>
             </div>
             <div className="flex items-center">
-              <span className="text-white/60 w-28 text-right mr-3">Date:</span>
-              <span className="text-white font-medium">April 2025</span>
+              <span className="text-white/60 w-24 md:w-28 text-right mr-3 text-sm md:text-base">Date:</span>
+              <span className="text-white font-medium text-sm md:text-base">April 2025</span>
             </div>
           </div>
           
-          <div className="mt-12">
+          <div className="mt-8 md:mt-12">
             <div className="inline-block rounded-full bg-gradient-to-r from-amber-500 to-yellow-500 p-[2px]">
-              <div className="rounded-full bg-black/40 backdrop-blur-sm px-6 py-2.5">
-                <span className="text-amber-200 font-medium">Digital Product Studio</span>
+              <div className="rounded-full bg-black/40 backdrop-blur-sm px-4 md:px-6 py-2 md:py-2.5">
+                <span className="text-amber-200 font-medium text-sm md:text-base">Digital Product Studio</span>
               </div>
             </div>
           </div>
@@ -208,7 +208,7 @@ export default function LandingSlide1({ direction, onExit }: LandingSlide1Props)
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2, duration: 0.6 }}
-            className="mt-16"
+            className="mt-12 md:mt-16"
           >
             <button
               onClick={() => {
@@ -220,7 +220,7 @@ export default function LandingSlide1({ direction, onExit }: LandingSlide1Props)
                   window.dispatchEvent(event);
                 }
               }}
-              className="px-8 py-3 text-lg md:text-xl font-medium text-white bg-gradient-to-r from-amber-500 to-yellow-500 rounded-full shadow-lg hover:from-amber-600 hover:to-yellow-600 transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
+              className="px-6 md:px-8 py-3 text-base md:text-xl font-medium text-white bg-gradient-to-r from-amber-500 to-yellow-500 rounded-full shadow-lg hover:from-amber-600 hover:to-yellow-600 transition-all duration-300 transform hover:scale-105 hover:shadow-xl active:scale-95 active:shadow-md"
             >
               Get Started
             </button>

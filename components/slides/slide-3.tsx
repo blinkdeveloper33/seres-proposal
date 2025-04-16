@@ -233,6 +233,7 @@ export default function Slide3({ direction, onExit }: Slide3Props) {
           alt="Market Opportunity Background"
           fill
           priority
+          sizes="100vw"
           className="object-cover brightness-[0.75]"
           style={{
             objectPosition: "center center",
@@ -242,7 +243,7 @@ export default function Slide3({ direction, onExit }: Slide3Props) {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 flex h-full w-full flex-col md:flex-row px-4 py-6 md:px-12 md:py-8 pb-16 md:pb-24 overflow-y-auto">
+      <div className="relative z-10 flex h-full w-full flex-col md:flex-row px-3 py-4 md:px-12 md:py-8 pb-16 md:pb-24 overflow-y-auto">
         {/* Left Column - Key Info */}
         <div className="flex flex-col w-full md:w-1/2 md:pr-8 md:justify-between md:h-full">
           {/* Title */}
@@ -250,7 +251,7 @@ export default function Slide3({ direction, onExit }: Slide3Props) {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mb-4 md:mb-5 text-3xl md:text-4xl font-extrabold text-white text-center md:text-left"
+            className="mb-3 md:mb-5 text-2xl md:text-4xl font-extrabold text-white text-center md:text-left"
           >
             Market Opportunity
           </motion.h1>
@@ -260,13 +261,13 @@ export default function Slide3({ direction, onExit }: Slide3Props) {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="mb-5 md:mb-6 bg-white/10 backdrop-blur-sm border border-white/10 rounded-xl p-4"
+            className="mb-3 md:mb-5 bg-white/10 backdrop-blur-sm border border-white/10 rounded-xl p-3 md:p-4"
           >
-            <h2 className="text-lg md:text-xl font-semibold text-white mb-2 flex items-center">
+            <h2 className="text-base md:text-xl font-semibold text-white mb-2 flex items-center">
               <TrendingUp className="mr-2 text-amber-400 drop-shadow-[0_2px_3px_rgba(0,0,0,0.3)] transform hover:scale-105 transition-transform duration-200" />
               Accelerating Growth
             </h2>
-            <p className="text-sm md:text-base text-white/90">
+            <p className="text-xs md:text-base text-white/90">
               Foreign appetite for Paraguayan property is accelerating with 
               <span className="text-amber-400 font-semibold"> 15-20% </span> 
               YoY price growth and a residential market projected at
@@ -280,13 +281,13 @@ export default function Slide3({ direction, onExit }: Slide3Props) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.6 }}
-            className="mb-5 md:mb-6"
+            className="mb-3 md:mb-5"
           >
-            <h3 className="text-base md:text-lg font-semibold text-white mb-2 flex items-center">
+            <h3 className="text-sm md:text-lg font-semibold text-white mb-2 flex items-center">
               <BarChart className="mr-2 text-amber-400 drop-shadow-[0_2px_3px_rgba(0,0,0,0.3)] transform hover:scale-105 transition-transform duration-200" />
               Economic Tailwinds
             </h3>
-            <div className="space-y-3">
+            <div className="space-y-2 md:space-y-3">
               {economicTailwinds.map((item, index) => (
                 <motion.div
                   key={index}
@@ -294,13 +295,13 @@ export default function Slide3({ direction, onExit }: Slide3Props) {
                   variants={cardVariants}
                   initial="hidden"
                   animate="visible"
-                  className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-lg p-3 hover:bg-white/15 transition-colors duration-300"
+                  className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-lg p-2 md:p-3 hover:bg-white/15 transition-colors duration-300"
                 >
                   <div className="flex items-center">
-                    <div className={`mr-3 p-2 rounded-full text-white ${item.color} flex-shrink-0 shadow-lg transform hover:scale-105 transition-transform duration-200 border border-black/20 drop-shadow-[0_2px_3px_rgba(0,0,0,0.3)]`}>
+                    <div className={`mr-3 p-1.5 md:p-2 rounded-full text-white ${item.color} flex-shrink-0 shadow-lg transform hover:scale-105 transition-transform duration-200 border border-black/20 drop-shadow-[0_2px_3px_rgba(0,0,0,0.3)]`}>
                       {item.icon}
                     </div>
-                    <p className="text-xs md:text-sm text-white/80">
+                    <p className="text-[10px] md:text-sm text-white/80">
                       {item.description}
                     </p>
                   </div>
@@ -316,11 +317,11 @@ export default function Slide3({ direction, onExit }: Slide3Props) {
             transition={{ delay: 0.4, duration: 0.6 }}
             className="md:mb-0"
           >
-            <h3 className="text-base md:text-lg font-semibold text-white mb-2 flex items-center">
+            <h3 className="text-sm md:text-lg font-semibold text-white mb-2 flex items-center">
               <XCircle className="mr-2 text-amber-400 drop-shadow-[0_2px_3px_rgba(0,0,0,0.3)] transform hover:scale-105 transition-transform duration-200" />
               Digital Pain Points
             </h3>
-            <div className="space-y-3">
+            <div className="space-y-2 md:space-y-3">
               {digitalPainPoints.map((item, index) => (
                 <motion.div
                   key={index}
@@ -328,13 +329,13 @@ export default function Slide3({ direction, onExit }: Slide3Props) {
                   variants={cardVariants}
                   initial="hidden"
                   animate="visible"
-                  className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-lg p-3 hover:bg-white/15 transition-colors duration-300"
+                  className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-lg p-2 md:p-3 hover:bg-white/15 transition-colors duration-300"
                 >
                   <div className="flex items-center">
-                    <div className={`mr-3 p-2 rounded-full text-white ${item.color} flex-shrink-0 shadow-lg transform hover:scale-105 transition-transform duration-200 border border-black/20 drop-shadow-[0_2px_3px_rgba(0,0,0,0.3)]`}>
+                    <div className={`mr-3 p-1.5 md:p-2 rounded-full text-white ${item.color} flex-shrink-0 shadow-lg transform hover:scale-105 transition-transform duration-200 border border-black/20 drop-shadow-[0_2px_3px_rgba(0,0,0,0.3)]`}>
                       {item.icon}
                     </div>
-                    <p className="text-xs md:text-sm text-white/80">
+                    <p className="text-[10px] md:text-sm text-white/80">
                       {item.description}
                     </p>
                   </div>
@@ -345,29 +346,29 @@ export default function Slide3({ direction, onExit }: Slide3Props) {
         </div>
 
         {/* Right Column - Image Slider & Digital Demand */}
-        <div className="flex flex-col w-full md:w-1/2 mt-5 md:mt-0 md:justify-between md:h-full">
+        <div className="flex flex-col w-full md:w-1/2 mt-3 md:mt-0 md:justify-between md:h-full">
           {/* Digital Demand Section */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.6 }}
-            className="mb-4 md:mb-5 bg-white/10 backdrop-blur-sm border border-white/10 rounded-xl p-4"
+            className="mb-3 md:mb-5 bg-white/10 backdrop-blur-sm border border-white/10 rounded-xl p-3 md:p-4"
           >
-            <h3 className="text-base md:text-lg font-semibold text-white mb-2 flex items-center">
+            <h3 className="text-sm md:text-lg font-semibold text-white mb-2 flex items-center">
               <PieChart className="mr-2 text-amber-400 drop-shadow-[0_2px_3px_rgba(0,0,0,0.3)] transform hover:scale-105 transition-transform duration-200" />
               Digital Demand Surge
             </h3>
-            <ul className="space-y-2 text-xs md:text-sm text-white/80">
+            <ul className="space-y-1.5 md:space-y-2 text-[10px] md:text-sm text-white/80">
               <li className="flex items-start">
-                <ArrowRight size={14} className="text-amber-400 mr-2 mt-1 flex-shrink-0 drop-shadow-[0_2px_3px_rgba(0,0,0,0.3)]" />
+                <ArrowRight size={12} className="text-amber-400 mr-2 mt-0.5 flex-shrink-0 drop-shadow-[0_2px_3px_rgba(0,0,0,0.3)]" />
                 <span>Google queries for "buy property in Paraguay" <span className="text-amber-400 font-semibold">+40% YoY</span></span>
               </li>
               <li className="flex items-start">
-                <ArrowRight size={14} className="text-amber-400 mr-2 mt-1 flex-shrink-0 drop-shadow-[0_2px_3px_rgba(0,0,0,0.3)]" />
+                <ArrowRight size={12} className="text-amber-400 mr-2 mt-0.5 flex-shrink-0 drop-shadow-[0_2px_3px_rgba(0,0,0,0.3)]" />
                 <span>March 2025 traffic: iinfocasas.com.py <span className="text-amber-400 font-semibold">193k visits (+254%)</span>, remax.com.py <span className="text-amber-400 font-semibold">27k (+89%)</span></span>
               </li>
               <li className="flex items-start">
-                <ArrowRight size={14} className="text-amber-400 mr-2 mt-1 flex-shrink-0 drop-shadow-[0_2px_3px_rgba(0,0,0,0.3)]" />
+                <ArrowRight size={12} className="text-amber-400 mr-2 mt-0.5 flex-shrink-0 drop-shadow-[0_2px_3px_rgba(0,0,0,0.3)]" />
                 <span>Visitor geography: <span className="text-amber-400 font-semibold">35% U.S., 25% EU, 30% Brazil/Argentina</span></span>
               </li>
             </ul>
@@ -378,13 +379,13 @@ export default function Slide3({ direction, onExit }: Slide3Props) {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.6 }}
-            className="mb-5 md:mb-6 bg-gradient-to-r from-amber-500/30 to-yellow-600/30 backdrop-blur-sm border border-amber-500/30 rounded-lg p-4"
+            className="mb-3 md:mb-5 bg-gradient-to-r from-amber-500/30 to-yellow-600/30 backdrop-blur-sm border border-amber-500/30 rounded-lg p-3 md:p-4"
           >
-            <h3 className="text-base md:text-lg font-semibold text-white mb-2 flex items-center">
+            <h3 className="text-sm md:text-lg font-semibold text-white mb-1.5 md:mb-2 flex items-center">
               <TrendingUp className="mr-2 text-amber-400 drop-shadow-[0_2px_3px_rgba(0,0,0,0.3)] transform hover:scale-105 transition-transform duration-200" />
               <span className="text-amber-400">Why Act Now</span>
             </h3>
-            <p className="text-xs md:text-sm text-white/90 italic">
+            <p className="text-[10px] md:text-sm text-white/90 italic">
               A brief window exists to dominate search rankings and secure foreign buyers before competitors replicate Paraguay's open-door policies and digitalize their funnels.
             </p>
           </motion.div>
@@ -394,7 +395,7 @@ export default function Slide3({ direction, onExit }: Slide3Props) {
             variants={sliderVariants}
             initial="initial"
             animate="animate"
-            className="relative w-full h-[180px] md:h-[260px] rounded-xl overflow-hidden flex-grow mb-6 md:mb-6"
+            className="relative w-full h-[140px] md:h-[260px] rounded-xl overflow-hidden flex-grow mb-3 md:mb-6"
           >
             <div className="absolute inset-0 bg-black/20 z-10 rounded-xl"></div>
             
@@ -414,37 +415,39 @@ export default function Slide3({ direction, onExit }: Slide3Props) {
                   src={src}
                   alt={`Paraguay Real Estate ${index + 1}`}
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover rounded-xl"
+                  priority={index === 0}
                 />
               </motion.div>
             ))}
             
-            {/* Navigation Buttons */}
+            {/* Navigation Buttons - Improved for touch */}
             <button 
               onClick={prevImage}
-              className="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-amber-400/80 hover:bg-amber-400 rounded-full p-1 transition duration-200 border border-black/20 shadow-lg"
+              className="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-amber-400/80 hover:bg-amber-400 rounded-full p-1 md:p-1.5 transition duration-200 border border-black/20 shadow-lg touch-manipulation"
               aria-label="Previous image"
             >
-              <ChevronLeft className="h-6 w-6 text-black" />
+              <ChevronLeft className="h-4 w-4 md:h-6 md:w-6 text-black" />
             </button>
             
             <button 
               onClick={nextImage}
-              className="absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-amber-400/80 hover:bg-amber-400 rounded-full p-1 transition duration-200 border border-black/20 shadow-lg"
+              className="absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-amber-400/80 hover:bg-amber-400 rounded-full p-1 md:p-1.5 transition duration-200 border border-black/20 shadow-lg touch-manipulation"
               aria-label="Next image"
             >
-              <ChevronRight className="h-6 w-6 text-black" />
+              <ChevronRight className="h-4 w-4 md:h-6 md:w-6 text-black" />
             </button>
             
             {/* Dots Indicator */}
-            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-20 flex space-x-2">
+            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-20 flex space-x-1.5 md:space-x-2">
               {images.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentImageIndex(index)}
-                  className={`w-2 h-2 rounded-full ${
+                  className={`w-1.5 h-1.5 md:w-2 md:h-2 rounded-full ${
                     index === currentImageIndex ? 'bg-amber-400' : 'bg-white/40'
-                  } drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]`}
+                  } drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)] touch-manipulation`}
                   aria-label={`Go to image ${index + 1}`}
                 />
               ))}

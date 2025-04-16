@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { AnimatePresence } from "framer-motion"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -38,6 +38,13 @@ export default function Home() {
   const totalFullSlides = 15
   const totalLandingSlides = 9
   const [imagesLoaded, setImagesLoaded] = useState(false)
+  
+  // Touch swipe handling
+  const touchStartXRef = useRef<number | null>(null)
+  const touchEndXRef = useRef<number | null>(null)
+  const minSwipeDistance = 50 // Minimum swipe distance in pixels
+  const slideLockTimer = useRef<NodeJS.Timeout | null>(null)
+  const [swipeLocked, setSwipeLocked] = useState(false)
 
   // Get total slides based on proposal type
   const totalSlides = proposalType === 'full' ? totalFullSlides : 
@@ -70,18 +77,39 @@ export default function Home() {
   }, [])
 
   const nextSlide = () => {
+    if (swipeLocked) return
+    
     setSlideDirection(1)
     setCurrentSlide((prev) => (prev < totalSlides - 1 ? prev + 1 : prev))
+    
+    // Lock swipe temporarily to prevent multiple swipes
+    setSwipeLocked(true)
+    if (slideLockTimer.current) clearTimeout(slideLockTimer.current)
+    slideLockTimer.current = setTimeout(() => setSwipeLocked(false), 700)
   }
 
   const prevSlide = () => {
+    if (swipeLocked) return
+    
     setSlideDirection(-1)
     setCurrentSlide((prev) => (prev > 0 ? prev - 1 : prev))
+    
+    // Lock swipe temporarily to prevent multiple swipes
+    setSwipeLocked(true)
+    if (slideLockTimer.current) clearTimeout(slideLockTimer.current)
+    slideLockTimer.current = setTimeout(() => setSwipeLocked(false), 700)
   }
 
   const goToSlide = (index: number) => {
+    if (swipeLocked) return
+    
     setSlideDirection(index > currentSlide ? 1 : -1)
     setCurrentSlide(index)
+    
+    // Lock swipe temporarily to prevent multiple swipes
+    setSwipeLocked(true)
+    if (slideLockTimer.current) clearTimeout(slideLockTimer.current)
+    slideLockTimer.current = setTimeout(() => setSwipeLocked(false), 700)
   }
 
   // New function to return to first slide
@@ -109,6 +137,33 @@ export default function Home() {
     setSlideDirection(1)
   }
 
+  // Touch event handlers
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    touchStartXRef.current = e.touches[0].clientX
+  }
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    touchEndXRef.current = e.touches[0].clientX
+  }
+
+  const handleTouchEnd = () => {
+    if (!touchStartXRef.current || !touchEndXRef.current) return
+    
+    const distance = touchStartXRef.current - touchEndXRef.current
+    const isLeftSwipe = distance > minSwipeDistance
+    const isRightSwipe = distance < -minSwipeDistance
+    
+    if (isLeftSwipe && currentSlide < totalSlides - 1 && proposalType !== 'none') {
+      nextSlide()
+    } else if (isRightSwipe && currentSlide > 0) {
+      prevSlide()
+    }
+    
+    // Reset values
+    touchStartXRef.current = null
+    touchEndXRef.current = null
+  }
+
   // Add keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -133,7 +188,16 @@ export default function Home() {
       window.removeEventListener("keydown", handleKeyDown)
       window.removeEventListener("slideNavigation", handleSlideNavigation as EventListener)
     }
-  }, [currentSlide])
+  }, [currentSlide, totalSlides, proposalType, swipeLocked])
+
+  // Clean up any timers
+  useEffect(() => {
+    return () => {
+      if (slideLockTimer.current) {
+        clearTimeout(slideLockTimer.current)
+      }
+    }
+  }, [])
 
   if (!imagesLoaded) {
     return (
@@ -144,7 +208,12 @@ export default function Home() {
   }
 
   return (
-    <main className="relative h-screen w-screen overflow-hidden bg-black">
+    <main 
+      className="relative h-screen w-screen overflow-hidden bg-black touch-none"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
       <AnimatePresence mode="wait" custom={slideDirection}>
         {currentSlide === 0 && (
           <Slide1 key="slide-1" direction={slideDirection} onExplore={handleExplore} />
@@ -186,35 +255,44 @@ export default function Home() {
         )}
       </AnimatePresence>
 
+      {/* Mobile swipe indicator - only shown briefly when the presentation starts */}
+      {proposalType !== 'none' && (
+        <div className="pointer-events-none fixed inset-0 z-50 flex items-center justify-center md:hidden">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white/40 text-xs opacity-0 animate-[fadeInOut_3s_ease-in-out_1]">
+            Swipe to navigate
+          </div>
+        </div>
+      )}
+
       {/* Only show navigation after a proposal type is selected and not on the first slide */}
       {proposalType !== 'none' && currentSlide !== 1 && (
-        <div className="absolute bottom-8 left-0 right-0 z-50 flex justify-center gap-6 px-4">
+        <div className="absolute bottom-4 md:bottom-8 left-0 right-0 z-50 flex justify-center gap-3 md:gap-6 px-4">
           <Button
             variant="ghost"
             size="icon"
             onClick={prevSlide}
-            disabled={currentSlide === 0}
-            className="group h-10 w-10 rounded-full border border-white/10 bg-black/20 p-0 text-white/70 shadow-lg transition-all duration-300 hover:bg-white/10 hover:text-white disabled:opacity-30 backdrop-blur-md"
+            disabled={currentSlide === 0 || swipeLocked}
+            className="group h-7 w-7 md:h-10 md:w-10 rounded-full border border-white/10 bg-black/20 p-0 text-white/70 shadow-md md:shadow-lg transition-all duration-300 hover:bg-white/10 hover:text-white disabled:opacity-30 backdrop-blur-md touch-manipulation"
           >
-            <ChevronLeft className="h-5 w-5 transition-transform group-hover:scale-110" />
+            <ChevronLeft className="h-3.5 w-3.5 md:h-5 md:w-5 transition-transform group-hover:scale-110" />
             <span className="sr-only">Previous slide</span>
           </Button>
           
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1.5 md:gap-3">
             {Array.from({ length: totalSlides }).map((_, index) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
                 aria-label={`Go to slide ${index + 1}`}
                 aria-current={currentSlide === index ? "true" : "false"}
-                className={`relative h-2.5 w-2.5 rounded-full transition-all duration-300 ${
+                className={`relative h-1.5 w-1.5 md:h-2.5 md:w-2.5 rounded-full transition-all duration-300 touch-manipulation ${
                   currentSlide === index 
                     ? "bg-white shadow-[0_0_5px_rgba(255,255,255,0.7)]" 
                     : "bg-white/20 hover:bg-white/50"
                 }`}
               >
                 {currentSlide === index && (
-                  <span className="absolute -inset-1 animate-ping rounded-full bg-white/40 opacity-75"></span>
+                  <span className="absolute -inset-1 animate-ping rounded-full bg-white/40 opacity-75 hidden md:block"></span>
                 )}
               </button>
             ))}
@@ -224,10 +302,10 @@ export default function Home() {
             variant="ghost"
             size="icon"
             onClick={nextSlide}
-            disabled={currentSlide === totalSlides - 1}
-            className="group h-10 w-10 rounded-full border border-white/10 bg-black/20 p-0 text-white/70 shadow-lg transition-all duration-300 hover:bg-white/10 hover:text-white disabled:opacity-30 backdrop-blur-md"
+            disabled={currentSlide === totalSlides - 1 || swipeLocked}
+            className="group h-7 w-7 md:h-10 md:w-10 rounded-full border border-white/10 bg-black/20 p-0 text-white/70 shadow-md md:shadow-lg transition-all duration-300 hover:bg-white/10 hover:text-white disabled:opacity-30 backdrop-blur-md touch-manipulation"
           >
-            <ChevronRight className="h-5 w-5 transition-transform group-hover:scale-110" />
+            <ChevronRight className="h-3.5 w-3.5 md:h-5 md:w-5 transition-transform group-hover:scale-110" />
             <span className="sr-only">Next slide</span>
           </Button>
         </div>

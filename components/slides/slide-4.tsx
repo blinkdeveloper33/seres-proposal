@@ -169,6 +169,7 @@ export default function Slide4({ direction, onExit }: Slide4Props) {
           alt="Project Objectives Background"
           fill
           priority
+          sizes="100vw"
           className="object-cover brightness-[0.75]"
           style={{
             objectPosition: "center center",
@@ -178,19 +179,19 @@ export default function Slide4({ direction, onExit }: Slide4Props) {
       </div>
 
       {/* Main Content - Responsive padding for mobile with extra space at bottom for navigation */}
-      <div className="relative z-10 flex h-full w-full flex-col px-4 py-6 md:px-12 md:py-8 pb-16 md:pb-24 overflow-y-auto">
+      <div className="relative z-10 flex h-full w-full flex-col px-3 py-4 md:px-12 md:py-8 pb-10 md:pb-24 overflow-y-auto">
         {/* Title - Responsive font size */}
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-4 md:mb-6 text-3xl md:text-4xl font-extrabold text-white text-center md:text-left"
+          className="mb-3 md:mb-6 text-2xl md:text-4xl font-extrabold text-white text-center md:text-left"
         >
           Project Objectives & Success Metrics
         </motion.h1>
 
         {/* Content container - using grid for responsive layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-8">
           {/* Strategic Objectives Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -198,13 +199,13 @@ export default function Slide4({ direction, onExit }: Slide4Props) {
             transition={{ delay: 0.2, duration: 0.6 }}
             className="flex flex-col"
           >
-            <h2 className="text-xl md:text-2xl font-bold text-white mb-4 flex items-center">
+            <h2 className="text-lg md:text-2xl font-bold text-white mb-2 md:mb-4 flex items-center">
               <CheckCircle2 className="mr-2 text-amber-400 drop-shadow-[0_2px_3px_rgba(0,0,0,0.3)] transform hover:scale-105 transition-transform duration-200" />
               Strategic Objectives
-              <span className="ml-2 text-sm font-normal text-white/60">(12-month horizon)</span>
+              <span className="ml-2 text-xs md:text-sm font-normal text-white/60">(12-month horizon)</span>
             </h2>
 
-            <div className="space-y-3">
+            <div className="space-y-2 md:space-y-3">
               {objectives.map((objective, index) => (
                 <motion.div
                   key={index}
@@ -212,12 +213,12 @@ export default function Slide4({ direction, onExit }: Slide4Props) {
                   variants={cardVariants}
                   initial="hidden"
                   animate="visible"
-                  className="flex items-start bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/10 hover:bg-white/15 transition-colors duration-300"
+                  className="flex items-start bg-white/10 backdrop-blur-sm rounded-lg p-2 md:p-3 border border-white/10 hover:bg-white/15 transition-colors duration-300"
                 >
-                  <div className="mr-3 mt-0.5 p-2 rounded-full bg-gradient-to-br from-amber-400 to-yellow-500 text-white shadow-lg transform hover:scale-105 transition-transform duration-200 border border-black/20 drop-shadow-[0_2px_3px_rgba(0,0,0,0.3)] flex-shrink-0">
+                  <div className="mr-2 md:mr-3 mt-0.5 p-1.5 md:p-2 rounded-full bg-gradient-to-br from-amber-400 to-yellow-500 text-white shadow-lg transform hover:scale-105 transition-transform duration-200 border border-black/20 drop-shadow-[0_2px_3px_rgba(0,0,0,0.3)] flex-shrink-0">
                     {objective.icon}
                   </div>
-                  <p className="text-sm md:text-base text-white/90">{index + 1}. {objective.text}</p>
+                  <p className="text-xs md:text-base text-white/90">{index + 1}. {objective.text}</p>
                 </motion.div>
               ))}
             </div>
@@ -230,20 +231,20 @@ export default function Slide4({ direction, onExit }: Slide4Props) {
             transition={{ delay: 0.4, duration: 0.6 }}
             className="flex flex-col"
           >
-            <h2 className="text-xl md:text-2xl font-bold text-white mb-4 flex items-center">
+            <h2 className="text-lg md:text-2xl font-bold text-white mb-2 md:mb-4 flex items-center">
               <LineChart className="mr-2 text-amber-400 drop-shadow-[0_2px_3px_rgba(0,0,0,0.3)] transform hover:scale-105 transition-transform duration-200" />
               Key Success Metrics & Targets
             </h2>
 
-            <div className="overflow-x-auto bg-white/10 backdrop-blur-sm rounded-xl border border-white/10 p-3">
-              <table className="w-full border-collapse text-sm md:text-base">
+            <div className="overflow-x-auto bg-white/10 backdrop-blur-sm rounded-xl border border-white/10 p-2 md:p-3">
+              <table className="w-full border-collapse text-xs md:text-base">
                 <thead>
                   <tr>
                     <motion.th 
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: 0.5, duration: 0.5 }}
-                      className="text-left py-2 px-3 text-white font-semibold border-b border-white/20"
+                      className="text-left py-1.5 md:py-2 px-2 md:px-3 text-white font-semibold border-b border-white/20"
                     >
                       Metric
                     </motion.th>
@@ -251,7 +252,7 @@ export default function Slide4({ direction, onExit }: Slide4Props) {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: 0.55, duration: 0.5 }}
-                      className="text-center py-2 px-3 text-white font-semibold border-b border-white/20"
+                      className="text-center py-1.5 md:py-2 px-2 md:px-3 text-white font-semibold border-b border-white/20"
                     >
                       Baseline
                     </motion.th>
@@ -259,17 +260,17 @@ export default function Slide4({ direction, onExit }: Slide4Props) {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: 0.6, duration: 0.5 }}
-                      className="text-center py-2 px-3 text-white font-semibold border-b border-white/20"
+                      className="text-center py-1.5 md:py-2 px-2 md:px-3 text-white font-semibold border-b border-white/20"
                     >
-                      12-Month Target
+                      Target
                     </motion.th>
                     <motion.th 
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: 0.65, duration: 0.5 }}
-                      className="text-left py-2 px-3 text-white font-semibold border-b border-white/20"
+                      className="text-left py-1.5 md:py-2 px-2 md:px-3 text-white font-semibold border-b border-white/20"
                     >
-                      Business Impact
+                      Impact
                     </motion.th>
                   </tr>
                 </thead>
@@ -282,10 +283,10 @@ export default function Slide4({ direction, onExit }: Slide4Props) {
                       transition={{ delay: 0.7 + (index * 0.1), duration: 0.4 }}
                       className={index % 2 === 0 ? "bg-white/5 hover:bg-white/10 transition-colors duration-300" : "hover:bg-white/10 transition-colors duration-300"}
                     >
-                      <td className="py-2 px-3 text-white/90 border-b border-white/10">{metric.metric}</td>
-                      <td className="py-2 px-3 text-center text-white/80 border-b border-white/10">{metric.baseline}</td>
-                      <td className="py-2 px-3 text-center text-amber-400 font-medium border-b border-white/10">{metric.target}</td>
-                      <td className="py-2 px-3 text-white/80 border-b border-white/10">{metric.impact}</td>
+                      <td className="py-1.5 md:py-2 px-2 md:px-3 text-white/90 border-b border-white/10 text-xs md:text-base">{metric.metric}</td>
+                      <td className="py-1.5 md:py-2 px-2 md:px-3 text-center text-white/80 border-b border-white/10 text-xs md:text-base">{metric.baseline}</td>
+                      <td className="py-1.5 md:py-2 px-2 md:px-3 text-center text-amber-400 font-medium border-b border-white/10 text-xs md:text-base">{metric.target}</td>
+                      <td className="py-1.5 md:py-2 px-2 md:px-3 text-white/80 border-b border-white/10 text-xs md:text-base">{metric.impact}</td>
                     </motion.tr>
                   ))}
                 </tbody>
@@ -297,13 +298,13 @@ export default function Slide4({ direction, onExit }: Slide4Props) {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.6 }}
-              className="mt-5 bg-gradient-to-r from-amber-500/30 to-yellow-600/30 backdrop-blur-sm border border-amber-500/30 rounded-lg p-4"
+              className="mt-3 md:mt-5 bg-gradient-to-r from-amber-500/30 to-yellow-600/30 backdrop-blur-sm border border-amber-500/30 rounded-lg p-3 md:p-4"
             >
-              <h3 className="text-base md:text-lg font-semibold text-white mb-2 flex items-center">
+              <h3 className="text-sm md:text-lg font-semibold text-white mb-1 md:mb-2 flex items-center">
                 <CheckCircle2 className="mr-2 text-amber-400 drop-shadow-[0_2px_3px_rgba(0,0,0,0.3)] transform hover:scale-105 transition-transform duration-200" />
                 <span className="text-amber-400">Why These Targets Matter</span>
               </h3>
-              <p className="text-xs md:text-sm text-white/90">
+              <p className="text-[10px] md:text-sm text-white/90">
                 Measurable success criteria to track our progress, ensure we deliver exceptional ROI, and create a sustainable competitive advantage in Paraguay's evolving real estate market.
               </p>
             </motion.div>
