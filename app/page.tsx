@@ -155,18 +155,18 @@ export default function Home() {
           <>
             {currentSlide === 1 && <Slide2 key="slide-2" direction={slideDirection} />}
             {currentSlide === 2 && <Slide3 key="slide-3" direction={slideDirection} onExit={goToFirstSlide} />}
-            {currentSlide === 3 && <Slide4 key="slide-4" direction={slideDirection} onExit={goToFirstSlide} />}
-            {currentSlide === 4 && <Slide5 key="slide-5" direction={slideDirection} onExit={goToFirstSlide} />}
-            {currentSlide === 5 && <Slide6 key="slide-6" direction={slideDirection} onExit={goToFirstSlide} />}
-            {currentSlide === 6 && <Slide7 key="slide-7" direction={slideDirection} onExit={goToFirstSlide} />}
-            {currentSlide === 7 && <Slide8 key="slide-8" direction={slideDirection} onExit={goToFirstSlide} />}
-            {currentSlide === 8 && <Slide9 key="slide-9" direction={slideDirection} onExit={goToFirstSlide} />}
-            {currentSlide === 9 && <Slide10 key="slide-10" direction={slideDirection} onExit={goToFirstSlide} />}
-            {currentSlide === 10 && <Slide11 key="slide-11" direction={slideDirection} onExit={goToFirstSlide} />}
-            {currentSlide === 11 && <Slide12 key="slide-12" direction={slideDirection} onExit={goToFirstSlide} />}
-            {currentSlide === 12 && <Slide13 key="slide-13" direction={slideDirection} onExit={goToFirstSlide} />}
-            {currentSlide === 13 && <Slide14 key="slide-14" direction={slideDirection} onExit={goToFirstSlide} />}
-            {currentSlide === 14 && <Slide15 key="slide-15" direction={slideDirection} onExit={goToFirstSlide} />}
+            {currentSlide === 3 && <Slide4 key="slide-4" direction={slideDirection} />}
+            {currentSlide === 4 && <Slide5 key="slide-5" direction={slideDirection} />}
+            {currentSlide === 5 && <Slide6 key="slide-6" direction={slideDirection} />}
+            {currentSlide === 6 && <Slide7 key="slide-7" direction={slideDirection} />}
+            {currentSlide === 7 && <Slide8 key="slide-8" direction={slideDirection} />}
+            {currentSlide === 8 && <Slide9 key="slide-9" direction={slideDirection} />}
+            {currentSlide === 9 && <Slide10 key="slide-10" direction={slideDirection} />}
+            {currentSlide === 10 && <Slide11 key="slide-11" direction={slideDirection} />}
+            {currentSlide === 11 && <Slide12 key="slide-12" direction={slideDirection} />}
+            {currentSlide === 12 && <Slide13 key="slide-13" direction={slideDirection} />}
+            {currentSlide === 13 && <Slide14 key="slide-14" direction={slideDirection} />}
+            {currentSlide === 14 && <Slide15 key="slide-15" direction={slideDirection} />}
           </>
         )}
         
