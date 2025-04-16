@@ -227,6 +227,18 @@ export default function LandingSlide2({ direction, onExit }: LandingSlide2Props)
           </p>
         </motion.div>
       </div>
+
+      {/* Filename Label - Bottom Left */}
+      <motion.div
+        className="absolute bottom-2 md:bottom-4 left-3 md:left-6 z-20"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 0.5, y: 0 }}
+        transition={{ delay: 0.9, duration: 0.6, ease: "easeOut" }}
+      >
+        <p className="text-[9px] md:text-[10px] font-light text-white/50" style={{ letterSpacing: '0.05em' }}>
+          landing-slide-2.tsx
+        </p>
+      </motion.div>
     </motion.div>
   )
 } 

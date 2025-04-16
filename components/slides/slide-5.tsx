@@ -180,30 +180,30 @@ export default function Slide5({ direction, onExit }: Slide5Props) {
       </div>
 
       {/* Main Content - Responsive padding for mobile with extra space at bottom for navigation */}
-      <div className="relative z-10 flex h-full w-full flex-col px-4 py-6 md:px-12 md:py-8 pb-16 md:pb-24 overflow-y-auto">
-        {/* Title - Responsive font size */}
+      <div className="relative z-10 flex h-full w-full flex-col px-3 py-4 md:px-8 md:py-5 pb-10 md:pb-16 overflow-y-auto">
+        {/* Title - Reduced vertical spacing */}
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-4 md:mb-6 text-3xl md:text-4xl font-extrabold text-white text-center md:text-left"
+          className="mb-2 md:mb-3 text-2xl md:text-3xl font-extrabold text-white text-center md:text-left"
         >
           Target Audiences & User Journeys
         </motion.h1>
 
-        {/* Primary Personas Section */}
+        {/* Primary Personas Section - More compact */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
-          className="mb-6 md:mb-8"
+          className="mb-3 md:mb-4"
         >
-          <h2 className="text-xl md:text-2xl font-bold text-white mb-4 flex items-center">
+          <h2 className="text-lg md:text-xl font-bold text-white mb-2 flex items-center">
             <Users className="mr-2 text-amber-400 drop-shadow-[0_2px_3px_rgba(0,0,0,0.3)] transform hover:scale-105 transition-transform duration-200" />
             Primary Personas
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+          <div className="grid grid-cols-2 gap-2">
             {personas.map((persona, index) => (
               <motion.div
                 key={index}
@@ -211,15 +211,15 @@ export default function Slide5({ direction, onExit }: Slide5Props) {
                 variants={cardVariants}
                 initial="hidden"
                 animate="visible"
-                className={`rounded-lg p-3 md:p-4 border backdrop-blur-sm hover:bg-white/15 transition-colors duration-300 ${persona.color}`}
+                className={`rounded-lg p-2 border backdrop-blur-sm hover:bg-white/15 transition-colors duration-300 ${persona.color}`}
               >
                 <div className="flex items-start">
-                  <div className="mr-3 p-2 rounded-full bg-gradient-to-br from-amber-400 to-yellow-500 text-white shadow-lg transform hover:scale-105 transition-transform duration-200 border border-black/20 drop-shadow-[0_2px_3px_rgba(0,0,0,0.3)] flex-shrink-0">
-                    <span className="font-bold">{index + 1}</span>
+                  <div className="mr-2 p-1.5 rounded-full bg-gradient-to-br from-amber-400 to-yellow-500 text-white shadow-lg transform hover:scale-105 transition-transform duration-200 border border-black/20 drop-shadow-[0_2px_3px_rgba(0,0,0,0.3)] flex-shrink-0">
+                    <span className="text-xs font-bold">{index + 1}</span>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-white">{persona.title}</h3>
-                    <p className="text-sm md:text-base text-white/70">{persona.description}</p>
+                    <h3 className="text-sm font-semibold text-white">{persona.title}</h3>
+                    <p className="text-xs text-white/70">{persona.description}</p>
                   </div>
                 </div>
               </motion.div>
@@ -227,28 +227,28 @@ export default function Slide5({ direction, onExit }: Slide5Props) {
           </div>
         </motion.div>
 
-        {/* User Journey Table */}
+        {/* User Journey Table - More compact */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.6 }}
-          className="mb-6 md:mb-8"
+          className="mb-3 md:mb-4"
         >
-          <h2 className="text-xl md:text-2xl font-bold text-white mb-4 flex items-center">
+          <h2 className="text-lg md:text-xl font-bold text-white mb-2 flex items-center">
             <ArrowRight className="mr-2 text-amber-400 drop-shadow-[0_2px_3px_rgba(0,0,0,0.3)] transform hover:scale-105 transition-transform duration-200" />
             End-to-End User Journey
-            <span className="ml-2 text-sm font-normal text-white/60">(simplified)</span>
+            <span className="ml-2 text-xs font-normal text-white/60">(simplified)</span>
           </h2>
 
-          <div className="overflow-x-auto bg-white/10 backdrop-blur-sm rounded-xl border border-white/10 p-3">
-            <table className="w-full border-collapse text-sm md:text-base">
+          <div className="overflow-x-auto bg-white/10 backdrop-blur-sm rounded-xl border border-white/10 p-2">
+            <table className="w-full border-collapse text-xs md:text-sm">
               <thead>
                 <tr>
                   <motion.th 
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.5, duration: 0.5 }}
-                    className="text-left py-2 px-3 text-white font-semibold border-b border-white/20"
+                    className="text-left py-1.5 px-2 text-white font-semibold border-b border-white/20"
                   >
                     Stage
                   </motion.th>
@@ -256,7 +256,7 @@ export default function Slide5({ direction, onExit }: Slide5Props) {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.55, duration: 0.5 }}
-                    className="text-left py-2 px-3 text-white font-semibold border-b border-white/20"
+                    className="text-left py-1.5 px-2 text-white font-semibold border-b border-white/20"
                   >
                     Key Touchpoints
                   </motion.th>
@@ -264,7 +264,7 @@ export default function Slide5({ direction, onExit }: Slide5Props) {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.6, duration: 0.5 }}
-                    className="text-left py-2 px-3 text-white font-semibold border-b border-white/20"
+                    className="text-left py-1.5 px-2 text-white font-semibold border-b border-white/20"
                   >
                     User Goal
                   </motion.th>
@@ -272,7 +272,7 @@ export default function Slide5({ direction, onExit }: Slide5Props) {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.65, duration: 0.5 }}
-                    className="text-left py-2 px-3 text-white font-semibold border-b border-white/20"
+                    className="text-left py-1.5 px-2 text-white font-semibold border-b border-white/20"
                   >
                     SERES Digital Enablers
                   </motion.th>
@@ -287,17 +287,17 @@ export default function Slide5({ direction, onExit }: Slide5Props) {
                     transition={{ delay: 0.7 + (index * 0.1), duration: 0.4 }}
                     className={index % 2 === 0 ? "bg-white/5 hover:bg-white/10 transition-colors duration-300" : "hover:bg-white/10 transition-colors duration-300"}
                   >
-                    <td className="py-2 px-3 border-b border-white/10">
+                    <td className="py-1 px-2 border-b border-white/10">
                       <div className="flex items-center">
-                        <div className="mr-3 p-2 rounded-full bg-gradient-to-br from-amber-400 to-yellow-500 text-white shadow-lg transform hover:scale-105 transition-transform duration-200 border border-black/20 drop-shadow-[0_2px_3px_rgba(0,0,0,0.3)] flex-shrink-0">
-                          {stage.icon}
+                        <div className="mr-2 p-1.5 rounded-full bg-gradient-to-br from-amber-400 to-yellow-500 text-white shadow-lg transform hover:scale-105 transition-transform duration-200 border border-black/20 drop-shadow-[0_2px_3px_rgba(0,0,0,0.3)] flex-shrink-0">
+                          {React.cloneElement(stage.icon, { className: "h-3.5 w-3.5 text-white" })}
                         </div>
-                        <span className="text-white/90">{stage.stage}</span>
+                        <span className="text-white/90 text-xs">{stage.stage}</span>
                       </div>
                     </td>
-                    <td className="py-2 px-3 text-white/80 border-b border-white/10">{stage.touchpoints}</td>
-                    <td className="py-2 px-3 text-white/80 border-b border-white/10">{stage.goal}</td>
-                    <td className="py-2 px-3 text-white/80 border-b border-white/10">{stage.enablers}</td>
+                    <td className="py-1 px-2 text-white/80 border-b border-white/10 text-xs">{stage.touchpoints}</td>
+                    <td className="py-1 px-2 text-white/80 border-b border-white/10 text-xs">{stage.goal}</td>
+                    <td className="py-1 px-2 text-white/80 border-b border-white/10 text-xs">{stage.enablers}</td>
                   </motion.tr>
                 ))}
               </tbody>
@@ -305,38 +305,50 @@ export default function Slide5({ direction, onExit }: Slide5Props) {
           </div>
         </motion.div>
 
-        {/* Journey Success Signals */}
+        {/* Journey Success Signals - More compact */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.6 }}
-          className="mb-4 md:mb-6 bg-gradient-to-r from-amber-500/30 to-yellow-600/30 backdrop-blur-sm border border-amber-500/30 rounded-lg p-4"
+          className="bg-gradient-to-r from-amber-500/30 to-yellow-600/30 backdrop-blur-sm border border-amber-500/30 rounded-lg p-2.5"
         >
-          <h3 className="text-base md:text-lg font-semibold text-white mb-2 flex items-center">
-            <CheckCircle className="mr-2 text-amber-400 drop-shadow-[0_2px_3px_rgba(0,0,0,0.3)] transform hover:scale-105 transition-transform duration-200" />
+          <h3 className="text-sm md:text-base font-semibold text-white mb-1.5 flex items-center">
+            <CheckCircle className="mr-2 h-4 w-4 text-amber-400 drop-shadow-[0_2px_3px_rgba(0,0,0,0.3)]" />
             <span className="text-amber-400">Journey Success Signals</span>
           </h3>
 
-          <ul className="space-y-2 md:ml-2">
+          <div className="flex flex-wrap gap-x-4 gap-y-1 md:ml-2">
             {successSignals.map((signal, index) => (
-              <motion.li
+              <motion.div
                 key={index}
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.7 + (index * 0.1), duration: 0.4 }}
-                className="flex items-center text-white/90"
+                className="flex items-center text-white/90 text-xs basis-full md:basis-auto"
               >
-                <span className="inline-block h-2 w-2 bg-amber-400 rounded-full mr-2 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]"></span>
+                <span className="inline-block h-1.5 w-1.5 bg-amber-400 rounded-full mr-1.5 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]"></span>
                 {signal}
-              </motion.li>
+              </motion.div>
             ))}
-          </ul>
+          </div>
           
-          <p className="mt-3 text-xs md:text-sm text-white/90 italic">
-            These personas and journeys guide every UX, content, and automation decision, ensuring the platform converts the right traffic into closed deals for SERES.
+          <p className="mt-2 text-xs text-white/90 italic">
+            These personas and journeys guide every UX, content, and automation decision, converting traffic into deals.
           </p>
         </motion.div>
       </div>
+
+      {/* Filename Label - Bottom Left */}
+      <motion.div
+        className="absolute bottom-2 md:bottom-4 left-3 md:left-6 z-20"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 0.5, y: 0 }}
+        transition={{ delay: 0.8, duration: 0.6, ease: "easeOut" }}
+      >
+        <p className="text-[9px] md:text-[10px] font-light text-white/50" style={{ letterSpacing: '0.05em' }}>
+          slide-5.tsx
+        </p>
+      </motion.div>
     </motion.div>
   )
 } 
