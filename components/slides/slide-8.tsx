@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import { Paintbrush, Palette, Component, Smartphone, Accessibility, ClipboardCheck, Figma, ArrowRight } from "lucide-react"
 import { Merriweather } from 'next/font/google'
+import ExitButton from '@/components/ui/exit-button'
 
 // Initialize the Merriweather font
 const merriweather = Merriweather({ 
@@ -14,9 +15,10 @@ const merriweather = Merriweather({
 
 interface Slide8Props {
   direction: number
+  onExit?: () => void
 }
 
-export default function Slide8({ direction }: Slide8Props) {
+export default function Slide8({ direction, onExit }: Slide8Props) {
   // State to detect if we're on a mobile device
   const [isMobile, setIsMobile] = useState(false)
   
@@ -147,6 +149,9 @@ export default function Slide8({ direction }: Slide8Props) {
       className={`absolute inset-0 h-full w-full ${merriweather.className}`}
       style={{ opacity: 0 }}
     >
+      {/* Exit Button */}
+      {onExit && <ExitButton onClick={onExit} />}
+      
       {/* Background */}
       <div className="absolute inset-0 overflow-hidden">
         <Image 
