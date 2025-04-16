@@ -84,6 +84,12 @@ export default function Home() {
     setCurrentSlide(index)
   }
 
+  // New function to return to first slide
+  const goToFirstSlide = () => {
+    setSlideDirection(-1)
+    setCurrentSlide(1) // Go to the first slide of the selected presentation type
+  }
+
   // Handle selection from slide 1
   const handleExplore = (version: string) => {
     if (version === 'full') {
@@ -129,19 +135,19 @@ export default function Home() {
         {proposalType === 'full' && (
           <>
             {currentSlide === 1 && <Slide2 key="slide-2" direction={slideDirection} />}
-            {currentSlide === 2 && <Slide3 key="slide-3" direction={slideDirection} />}
-            {currentSlide === 3 && <Slide4 key="slide-4" direction={slideDirection} />}
-            {currentSlide === 4 && <Slide5 key="slide-5" direction={slideDirection} />}
-            {currentSlide === 5 && <Slide6 key="slide-6" direction={slideDirection} />}
-            {currentSlide === 6 && <Slide7 key="slide-7" direction={slideDirection} />}
-            {currentSlide === 7 && <Slide8 key="slide-8" direction={slideDirection} />}
-            {currentSlide === 8 && <Slide9 key="slide-9" direction={slideDirection} />}
-            {currentSlide === 9 && <Slide10 key="slide-10" direction={slideDirection} />}
-            {currentSlide === 10 && <Slide11 key="slide-11" direction={slideDirection} />}
-            {currentSlide === 11 && <Slide12 key="slide-12" direction={slideDirection} />}
-            {currentSlide === 12 && <Slide13 key="slide-13" direction={slideDirection} />}
-            {currentSlide === 13 && <Slide14 key="slide-14" direction={slideDirection} />}
-            {currentSlide === 14 && <Slide15 key="slide-15" direction={slideDirection} />}
+            {currentSlide === 2 && <Slide3 key="slide-3" direction={slideDirection} onExit={goToFirstSlide} />}
+            {currentSlide === 3 && <Slide4 key="slide-4" direction={slideDirection} onExit={goToFirstSlide} />}
+            {currentSlide === 4 && <Slide5 key="slide-5" direction={slideDirection} onExit={goToFirstSlide} />}
+            {currentSlide === 5 && <Slide6 key="slide-6" direction={slideDirection} onExit={goToFirstSlide} />}
+            {currentSlide === 6 && <Slide7 key="slide-7" direction={slideDirection} onExit={goToFirstSlide} />}
+            {currentSlide === 7 && <Slide8 key="slide-8" direction={slideDirection} onExit={goToFirstSlide} />}
+            {currentSlide === 8 && <Slide9 key="slide-9" direction={slideDirection} onExit={goToFirstSlide} />}
+            {currentSlide === 9 && <Slide10 key="slide-10" direction={slideDirection} onExit={goToFirstSlide} />}
+            {currentSlide === 10 && <Slide11 key="slide-11" direction={slideDirection} onExit={goToFirstSlide} />}
+            {currentSlide === 11 && <Slide12 key="slide-12" direction={slideDirection} onExit={goToFirstSlide} />}
+            {currentSlide === 12 && <Slide13 key="slide-13" direction={slideDirection} onExit={goToFirstSlide} />}
+            {currentSlide === 13 && <Slide14 key="slide-14" direction={slideDirection} onExit={goToFirstSlide} />}
+            {currentSlide === 14 && <Slide15 key="slide-15" direction={slideDirection} onExit={goToFirstSlide} />}
           </>
         )}
         
@@ -149,19 +155,20 @@ export default function Home() {
         {proposalType === 'landing' && (
           <>
             {currentSlide === 1 && <LandingSlide1 key="landing-slide-1" direction={slideDirection} />}
-            {currentSlide === 2 && <LandingSlide2 key="landing-slide-2" direction={slideDirection} />}
-            {currentSlide === 3 && <LandingSlide3 key="landing-slide-3" direction={slideDirection} />}
-            {currentSlide === 4 && <LandingSlide4 key="landing-slide-4" direction={slideDirection} />}
-            {currentSlide === 5 && <LandingSlide5 key="landing-slide-5" direction={slideDirection} />}
-            {currentSlide === 6 && <LandingSlide6 key="landing-slide-6" direction={slideDirection} />}
-            {currentSlide === 7 && <LandingSlide7 key="landing-slide-7" direction={slideDirection} />}
-            {currentSlide === 8 && <LandingSlide8 key="landing-slide-8" direction={slideDirection} />}
+            {currentSlide === 2 && <LandingSlide2 key="landing-slide-2" direction={slideDirection} onExit={goToFirstSlide} />}
+            {currentSlide === 3 && <LandingSlide3 key="landing-slide-3" direction={slideDirection} onExit={goToFirstSlide} />}
+            {currentSlide === 4 && <LandingSlide4 key="landing-slide-4" direction={slideDirection} onExit={goToFirstSlide} />}
+            {currentSlide === 5 && <LandingSlide5 key="landing-slide-5" direction={slideDirection} onExit={goToFirstSlide} />}
+            {currentSlide === 6 && <LandingSlide6 key="landing-slide-6" direction={slideDirection} onExit={goToFirstSlide} />}
+            {currentSlide === 7 && <LandingSlide7 key="landing-slide-7" direction={slideDirection} onExit={goToFirstSlide} />}
+            {currentSlide === 8 && <LandingSlide8 key="landing-slide-8" direction={slideDirection} onExit={goToFirstSlide} />}
+            {currentSlide === 9 && <LandingSlide9 key="landing-slide-9" direction={slideDirection} onExit={goToFirstSlide} />}
           </>
         )}
       </AnimatePresence>
 
-      {/* Only show navigation after a proposal type is selected */}
-      {proposalType !== 'none' && (
+      {/* Only show navigation after a proposal type is selected and not on the first slide */}
+      {proposalType !== 'none' && currentSlide !== 1 && (
         <div className="absolute bottom-8 left-0 right-0 z-50 flex justify-center gap-6 px-4">
           <Button
             variant="ghost"

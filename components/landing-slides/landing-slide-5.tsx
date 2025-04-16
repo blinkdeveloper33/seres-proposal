@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import { Search, BarChart4, Map, Clock } from "lucide-react"
 import { Merriweather } from 'next/font/google'
+import ExitButton from '@/components/ui/exit-button'
 
 // Initialize the Merriweather font
 const merriweather = Merriweather({ 
@@ -14,9 +15,10 @@ const merriweather = Merriweather({
 
 interface LandingSlide5Props {
   direction: number
+  onExit?: () => void
 }
 
-export default function LandingSlide5({ direction }: LandingSlide5Props) {
+export default function LandingSlide5({ direction, onExit }: LandingSlide5Props) {
   // State to detect if we're on a mobile device
   const [isMobile, setIsMobile] = useState(false)
   
@@ -84,6 +86,9 @@ export default function LandingSlide5({ direction }: LandingSlide5Props) {
       className={`absolute inset-0 h-full w-full ${merriweather.className}`}
       style={{ opacity: 0 }}
     >
+      {/* Exit Button */}
+      {onExit && <ExitButton onClick={onExit} />}
+
       {/* Background */}
       <div className="absolute inset-0 overflow-hidden">
         <Image 

@@ -13,9 +13,10 @@ const merriweather = Merriweather({
 
 interface LandingSlide1Props {
   direction: number
+  onExit?: () => void
 }
 
-export default function LandingSlide1({ direction }: LandingSlide1Props) {
+export default function LandingSlide1({ direction, onExit }: LandingSlide1Props) {
   // State to detect if we're on a mobile device
   const [isMobile, setIsMobile] = useState(false)
   
