@@ -1,0 +1,230 @@
+"use client"
+
+import React from 'react'
+import { motion } from "framer-motion"
+import Image from "next/image"
+import { ArrowRight, Globe, PieChart, TrendingUp } from "lucide-react"
+
+interface Slide2Props {
+  direction: number
+}
+
+export default function Slide2({ direction }: Slide2Props) {
+  // Transition config
+  const transitionConfig = {
+    type: "spring",
+    stiffness: 300,
+    damping: 30,
+    mass: 1.2,
+  }
+
+  // Slide transition variants
+  const variants = {
+    initial: (direction: number) => ({
+      x: direction > 0 ? "100%" : "-100%",
+      opacity: 0,
+      scale: 0.96,
+    }),
+    animate: {
+      x: 0,
+      opacity: 1,
+      scale: 1,
+      transition: { 
+        ...transitionConfig, 
+        opacity: { duration: 0.5 },
+        scale: { duration: 0.6, ease: "easeOut" }
+      }
+    },
+    exit: (direction: number) => ({
+      x: direction > 0 ? "-100%" : "100%",
+      opacity: 0,
+      scale: 0.96,
+      transition: { 
+        ...transitionConfig, 
+        opacity: { duration: 0.3 },
+        scale: { duration: 0.4 }
+      }
+    }),
+  }
+
+  // Content container animation
+  const contentContainerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        delayChildren: 0.25,
+        staggerChildren: 0.12,
+        ease: "easeOut"
+      }
+    }
+  }
+
+  // Item animation variants
+  const itemVariants = {
+    hidden: { y: 25, opacity: 0, scale: 0.98 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      scale: 1,
+      transition: { 
+        type: "spring", 
+        stiffness: 120, 
+        damping: 18,
+        mass: 1,
+        opacity: { duration: 0.7 }
+      }
+    }
+  }
+
+  // Metric card animation variants
+  const metricCardVariants = {
+    hidden: { y: 30, opacity: 0, scale: 0.9 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 200,
+        damping: 20,
+        mass: 1,
+        delay: 0.6
+      }
+    }
+  }
+
+  return (
+    <motion.div
+      custom={direction}
+      variants={variants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      className="absolute inset-0 h-full w-full"
+      style={{ opacity: 0 }}
+    >
+      {/* Background */}
+      <div className="absolute inset-0 bg-[#F9FAFB]" />
+
+      {/* Main Content */}
+      <div className="relative z-10 flex h-full w-full flex-col px-12 py-8">
+        {/* Title */}
+        <motion.h1
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mb-10 text-4xl font-extrabold text-[#111827]"
+        >
+          Executive Summary
+        </motion.h1>
+
+        {/* 3-Column Layout */}
+        <motion.div
+          variants={contentContainerVariants}
+          initial="hidden"
+          animate="visible"
+          className="grid grid-cols-12 gap-8 mt-4"
+        >
+          {/* Current Challenge (Left Column) */}
+          <motion.div
+            variants={itemVariants}
+            className="col-span-4 flex flex-col"
+          >
+            <h2 className="text-[22px] font-semibold text-[#111827] mb-4">Current Challenge</h2>
+            <ul className="space-y-4 list-disc ml-5">
+              <li className="text-base text-gray-800">
+                Fragmented digital presence limits global reach and lead conversion.
+              </li>
+              <li className="text-base text-gray-800">
+                Manual property showcase slows deal cycles and raises acquisition cost.
+              </li>
+            </ul>
+          </motion.div>
+
+          {/* Proposed Digital Platform (Center Column) */}
+          <motion.div
+            variants={itemVariants}
+            className="col-span-4 flex flex-col"
+          >
+            <h2 className="text-[22px] font-semibold text-[#111827] mb-4">Proposed Digital Platform</h2>
+            <ul className="space-y-4 list-disc ml-5">
+              <li className="text-base text-gray-800">
+                Unified, multilingual portal with curated property database.
+              </li>
+              <li className="text-base text-gray-800">
+                Friction-less lead-to-deal funnel via WhatsApp and CRM automation.
+              </li>
+              <li className="text-base text-gray-800">
+                Scalable foundation ready for 3-D tours and augmented-reality add-ons.
+              </li>
+            </ul>
+          </motion.div>
+
+          {/* Impact Metrics (Right Column) */}
+          <motion.div
+            variants={itemVariants}
+            className="col-span-4 flex flex-col"
+          >
+            <h2 className="text-[22px] font-semibold text-[#111827] mb-4">Impact Metrics – Year 1</h2>
+            <div className="grid grid-cols-1 gap-4">
+              {/* Conversion Metric */}
+              <motion.div
+                variants={metricCardVariants}
+                className="bg-white p-4 rounded-lg shadow-sm flex items-center"
+              >
+                <div className="mr-4 p-2 bg-blue-50 rounded-full">
+                  <PieChart className="h-8 w-8 text-blue-600" />
+                </div>
+                <div>
+                  <p className="text-[28px] font-bold text-[#111827]">+45%</p>
+                  <p className="text-[16px] text-gray-700">Lead-to-Client Conversion</p>
+                </div>
+              </motion.div>
+
+              {/* Global Traffic Metric */}
+              <motion.div
+                variants={metricCardVariants}
+                className="bg-white p-4 rounded-lg shadow-sm flex items-center"
+                custom={1}
+              >
+                <div className="mr-4 p-2 bg-blue-50 rounded-full">
+                  <Globe className="h-8 w-8 text-blue-600" />
+                </div>
+                <div>
+                  <p className="text-[28px] font-bold text-[#111827]">2×</p>
+                  <p className="text-[16px] text-gray-700">Global Traffic Growth</p>
+                </div>
+              </motion.div>
+
+              {/* ROI Metric */}
+              <motion.div
+                variants={metricCardVariants}
+                className="bg-white p-4 rounded-lg shadow-sm flex items-center"
+                custom={2}
+              >
+                <div className="mr-4 p-2 bg-blue-50 rounded-full">
+                  <TrendingUp className="h-8 w-8 text-blue-600" />
+                </div>
+                <div>
+                  <p className="text-[28px] font-bold text-[#111827]">&lt;9-Month</p>
+                  <p className="text-[16px] text-gray-700">Payback Period</p>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+        </motion.div>
+
+        {/* Value Proposition One-Liner (Footer) */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.2, duration: 0.6 }}
+          className="mt-auto text-[18px] italic text-[#004AAD] font-medium"
+        >
+          Aleph Corp amplifies SERES' global footprint, accelerating sales cycles through a friction-less, data-driven real-estate platform.
+        </motion.p>
+      </div>
+    </motion.div>
+  )
+}
