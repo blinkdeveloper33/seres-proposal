@@ -154,7 +154,7 @@ export default function Home() {
         {/* Landing Website Slides */}
         {proposalType === 'landing' && (
           <>
-            {currentSlide === 1 && <LandingSlide1 key="landing-slide-1" direction={slideDirection} />}
+            {currentSlide === 1 && <LandingSlide1 key="landing-slide-1" direction={slideDirection} onExit={() => goToSlide(2)} />}
             {currentSlide === 2 && <LandingSlide2 key="landing-slide-2" direction={slideDirection} onExit={goToFirstSlide} />}
             {currentSlide === 3 && <LandingSlide3 key="landing-slide-3" direction={slideDirection} onExit={goToFirstSlide} />}
             {currentSlide === 4 && <LandingSlide4 key="landing-slide-4" direction={slideDirection} onExit={goToFirstSlide} />}

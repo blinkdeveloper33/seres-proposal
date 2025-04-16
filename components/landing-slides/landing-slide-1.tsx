@@ -198,6 +198,25 @@ export default function LandingSlide1({ direction, onExit }: LandingSlide1Props)
               </div>
             </div>
           </div>
+          
+          {/* Get Started Button */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.2, duration: 0.6 }}
+            className="mt-16"
+          >
+            <button
+              onClick={() => {
+                if (direction !== undefined && onExit) {
+                  onExit();
+                }
+              }}
+              className="px-8 py-3 text-lg md:text-xl font-medium text-white bg-gradient-to-r from-amber-500 to-yellow-500 rounded-full shadow-lg hover:from-amber-600 hover:to-yellow-600 transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
+            >
+              Get Started
+            </button>
+          </motion.div>
         </motion.div>
       </div>
 
