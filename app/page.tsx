@@ -89,6 +89,13 @@ export default function Home() {
     setSlideDirection(-1)
     setCurrentSlide(1) // Go to the first slide of the selected presentation type
   }
+  
+  // New function to return to the main slide (Slide1)
+  const goToMainSlide = () => {
+    setSlideDirection(-1)
+    setProposalType('none')
+    setCurrentSlide(0) // Go back to the main slide
+  }
 
   // Handle selection from slide 1
   const handleExplore = (version: string) => {
@@ -112,8 +119,20 @@ export default function Home() {
       }
     }
 
+    // Listen for custom slide navigation event
+    const handleSlideNavigation = (e: any) => {
+      if (e.detail && typeof e.detail.index === 'number') {
+        goToSlide(e.detail.index);
+      }
+    }
+
     window.addEventListener("keydown", handleKeyDown)
-    return () => window.removeEventListener("keydown", handleKeyDown)
+    window.addEventListener("slideNavigation", handleSlideNavigation as EventListener)
+    
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown)
+      window.removeEventListener("slideNavigation", handleSlideNavigation as EventListener)
+    }
   }, [currentSlide])
 
   if (!imagesLoaded) {
@@ -154,7 +173,7 @@ export default function Home() {
         {/* Landing Website Slides */}
         {proposalType === 'landing' && (
           <>
-            {currentSlide === 1 && <LandingSlide1 key="landing-slide-1" direction={slideDirection} onExit={() => goToSlide(2)} />}
+            {currentSlide === 1 && <LandingSlide1 key="landing-slide-1" direction={slideDirection} onExit={goToMainSlide} />}
             {currentSlide === 2 && <LandingSlide2 key="landing-slide-2" direction={slideDirection} onExit={goToFirstSlide} />}
             {currentSlide === 3 && <LandingSlide3 key="landing-slide-3" direction={slideDirection} onExit={goToFirstSlide} />}
             {currentSlide === 4 && <LandingSlide4 key="landing-slide-4" direction={slideDirection} onExit={goToFirstSlide} />}

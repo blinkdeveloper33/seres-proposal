@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { Merriweather } from 'next/font/google'
+import ExitButton from '@/components/ui/exit-button'
 
 // Initialize the Merriweather font
 const merriweather = Merriweather({ 
@@ -118,6 +119,9 @@ export default function LandingSlide1({ direction, onExit }: LandingSlide1Props)
       className={`absolute inset-0 h-full w-full ${merriweather.className}`}
       style={{ opacity: 0 }}
     >
+      {/* Exit Button */}
+      {onExit && <ExitButton onClick={onExit} />}
+      
       {/* Background Image with gradient overlay */}
       <motion.div 
         className="absolute inset-0"
@@ -208,8 +212,12 @@ export default function LandingSlide1({ direction, onExit }: LandingSlide1Props)
           >
             <button
               onClick={() => {
-                if (direction !== undefined && onExit) {
-                  onExit();
+                if (direction !== undefined) {
+                  // Use the parent navigation to go to slide 2
+                  // This works differently than the exit button
+                  const nextSlideIndex = 2;
+                  const event = new CustomEvent('slideNavigation', { detail: { index: nextSlideIndex } });
+                  window.dispatchEvent(event);
                 }
               }}
               className="px-8 py-3 text-lg md:text-xl font-medium text-white bg-gradient-to-r from-amber-500 to-yellow-500 rounded-full shadow-lg hover:from-amber-600 hover:to-yellow-600 transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
