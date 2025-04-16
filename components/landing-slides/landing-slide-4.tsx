@@ -103,8 +103,8 @@ export default function LandingSlide4({ direction, onExit }: LandingSlide4Props)
       {/* Background */}
       <div className="absolute inset-0 overflow-hidden">
         <Image 
-          src="https://wbqhilueipkcyowudqzz.supabase.co/storage/v1/object/public/seres/tech-background.jpg"
-          alt="Digital Platform Background"
+          src="https://wbqhilueipkcyowudqzz.supabase.co/storage/v1/object/public/seres//milad-fakurian-UGSK1GGAz8E-unsplash.jpg"
+          alt="Project Objectives Background"
           fill
           priority
           className="object-cover brightness-[0.8]"

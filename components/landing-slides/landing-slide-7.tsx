@@ -92,11 +92,11 @@ export default function LandingSlide7({ direction, onExit }: LandingSlide7Props)
       {/* Background */}
       <div className="absolute inset-0 overflow-hidden">
         <Image 
-          src="https://wbqhilueipkcyowudqzz.supabase.co/storage/v1/object/public/seres/timeline-background.jpg"
-          alt="Timeline Background"
+          src="https://wbqhilueipkcyowudqzz.supabase.co/storage/v1/object/public/seres//milad-fakurian-UGSK1GGAz8E-unsplash.jpg"
+          alt="Budget Background"
           fill
           priority
-          className="object-cover brightness-[0.75]"
+          className="object-cover brightness-[0.8]"
           style={{
             objectPosition: "center center",
           }}
